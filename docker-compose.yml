@@ -1,0 +1,13 @@
+services:
+  phaser:
+    build: .
+    image: diploid-phaser:latest
+    container_name: diploid-phaser
+    ports:
+      - "8000:8000"
+    environment:
+      # 单次 CP-SAT 求解的时间上限（秒），超时且未证明最优则返回 undecided
+      PHASE_MAX_SOLVER_SECONDS: "10"
+      # 单个请求的总时间预算（秒）
+      PHASE_MAX_TOTAL_SECONDS: "120"
+    restart: unless-stopped
